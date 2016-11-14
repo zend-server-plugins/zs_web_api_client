@@ -1,0 +1,120 @@
+<link href="/ZendServer/ModuleResource/zsWebApiClient/css/ng-prettyjson.min.css" rel="stylesheet" />
+<link href="/ZendServer/ModuleResource/zsWebApiClient/css/index.css" rel="stylesheet" />
+
+<div id="bread-wrp" class="page-description">
+	<div id="bread">
+		<h1 style="display: block;">Web API Client</h1>
+		<div class="bread-info-btn">
+			<i class="glyphicons glyphicons-info-sign"></i>
+			<div class="page-description-content-wrapper">
+				<div class="triangle"></div>
+				<div class="page-description-content">
+				<table>
+					<tr>
+						<td>
+							The page is targeted mainly to make it easier to check and execute web services that Zend Server provides.
+							This plugin scans the entire code of Zend Server and tries to identify all the available web services,
+							yet not all of them appear on the page, and you might find some services missing. The page was created by
+							Gregory Chris (<a href="mailto:gregory.chris@roguewave.com">gregory.chris@roguewave.com</a>) 2016. Enjoy, and visit 
+							<a href="http://www.zend.com" target="_blank">zend.com</a> to check other products and services.
+						</td>
+					</tr>
+				</table>
+				</div>
+			</div>
+		</div>
+		<zendContact/>
+	</div>
+</div>
+
+<div class="container zswebapiclient">
+	<div class="settings-form-wrapper" style="padding: 0;">
+		<form id="webapi-client-form" ng-submit="form.submit();">
+			
+			<!-- request details -->
+			<div class="zswac-input-row">
+				<div class="zswac-input-block zswac-input-block-title">
+					<h3>Request</h3>
+				</div>
+				<div class="zswac-input-block">
+					<label>Method</label>
+					<select name="method" ng-model="form.method" id="method" class="form-control input-small">
+						<option value="get">GET</option>
+						<option value="post">POST</option>
+					</select>
+				</div>
+				<div class="zswac-input-block">
+					<label>Web API</label>
+					<!-- web api request name -->
+					<input type="text" id="zswac-action-input" ng-model="form.action" ng-init="availableActions.initKeyPress();" ng-class="{'zswac-input-error': form._actionError}" size="80" 
+						placeholder="e.g. jobqueueGetQueues" autocomplete="off" />
+					
+					<!-- web api request autocomplete box -->
+					<div class="zswac-available-actions-wrapper" ng-show="availableActions.shouldBeVisible()">
+						<ul>
+							<li ng-repeat="availableAction in availableActions.data | filter: form.action" title="{{availableAction}}" 
+								ng-class="{'zswac-selected-available-action': availableActions.selectedIndex == $index}">
+								<a ng-click="form.setAction(availableAction);">{{availableAction}}</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="zswac-input-block">
+					<label>Response type</label>
+					<select ng-model="form.responseType">
+						<option value="json">JSON</option>
+						<option value="xml">XML</option>
+					</select>
+				</div>
+			</div>
+			
+			<!-- request parameters (GET/POST) -->
+			<div class="zswac-input-row">
+				<div class="zswac-input-block zswac-input-block-title">
+					<h3>Parameters</h3>
+				</div>
+				<div class="zswac-input-block" style="margin: 0;">
+					<div class="zswac-parameter-block" ng-repeat="parameter in form.parameters">
+						<div class="zswac-input-block">
+							<label>Name</label>
+							<input type="text" ng-model="parameter.name" placeholder="Parameter name" />
+						</div>
+						<div class="zswac-input-block">
+							<label>Value</label>
+							<input type="text" ng-model="parameter.value" placeholder="Parameter value" />
+						</div>
+						<div class="zswac-input-block">
+							<button type="button" class="zswac-button-action" ng-click="form.removeParam($index)" title="Remove the parameter"><span class="glyphicons glyphicons-delete"></span></button>
+						</div>
+					</div>
+					
+					<!-- another line for new parameter -->
+					<div class="zswac-parameter-block">
+						<div class="zswac-input-block">
+							<label>Name</label>
+							<input type="text" ng-model="newParameter.name" placeholder="Parameter name" ng-change="form.parameterAdded()" />
+						</div>
+						<div class="zswac-input-block">
+							<label>Value</label>
+							<input type="text" ng-model="newParameter.value" placeholder="Parameter value" ng-change="form.parameterAdded()" />
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="zswac-input-row">
+				<div class="zswac-input-block zswac-input-block-title">
+					<h3><button type="submit" class="btn btn-blue">Submit</button></h3>
+				</div>
+			</div>
+			
+			<div class="zswac-input-row zswac-result-wrapper">
+				<div class="zswac-input-block">
+					<pre ng-if=" result" pretty-json="result">{{result | json}}</pre>
+					<pre ng-if="!result">Web APIs result goes here...</pre>
+				</div>
+			</div>
+			
+		</form>
+	</div>
+</div>

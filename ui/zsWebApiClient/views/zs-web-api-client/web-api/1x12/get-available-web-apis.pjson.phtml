@@ -1,0 +1,8 @@
+<?php
+// The main key is called "responseData", its value is JSON formatted 
+// list of people objects and the total number. The output of this 
+// file is injected into the response JSON object
+?>
+"responseData":{
+	"webapis": <?php echo json_encode($webapis); ?>
+}

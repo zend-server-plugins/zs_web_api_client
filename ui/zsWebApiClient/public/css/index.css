@@ -1,0 +1,69 @@
+img.zswac-logo {
+	float: left;
+	vertical-align: middle;
+    margin: 2px;
+    margin-left: 10px;
+}
+.zswac-input-block {
+	display: inline-block;
+	vertical-align: top;
+	margin: 0 10px 20px 10px;
+}
+.zswac-input-block h3 {
+	margin-top: 5px;
+}
+.zswac-input-block button.zswac-button-action {
+	margin-top: 26px;
+}
+
+.zswac-input-block label,
+.zswac-input-block input,
+.zswac-input-block select {
+	width: auto;
+	display: block;
+}
+.zswac-input-block.zswac-input-block-title {
+	width: 250px;
+}
+.zswac-input-error {
+	background: yellow;
+}
+.zswac-result-wrapper {
+	border-top: 1px solid #DDD; 
+	background: #F6F6F6;
+}
+
+
+
+.zswac-available-actions-wrapper {
+	xdisplay: none;
+	position: absolute;
+	z-index: 20;
+	top: 53px;
+	background: #FFF;
+	border: 1px solid #CCC;
+	box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+	width: 500px;
+	max-height: 390px;
+	overflow: hidden;
+}
+.zswac-available-actions-wrapper ul {
+	padding: 0;
+	margin: 0;
+}
+.zswac-available-actions-wrapper li {
+	display: block;
+	height: 26px;
+	line-height: 26px;
+	padding: 0 5px;
+}
+.zswac-available-actions-wrapper li.zswac-selected-available-action {
+	background: #DEF;
+}
+.zswac-available-actions-wrapper li:hover {
+	background: #EEE;
+	cursor: pointer;
+}
+.zswac-available-actions-wrapper li a:hover {
+	text-decoration: none;
+}
