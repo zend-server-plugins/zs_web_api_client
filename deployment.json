@@ -1,0 +1,14 @@
+{
+  "name" : "zs_webapi_client",
+  "display_name" : "ZS web API client",
+  "version" : "1.0.1",
+  "type": ["ui"],
+  "logo": "logo.png",
+  "eula": "LICENSE.txt",
+  "readme": "README.md",
+  "dependencies": {
+    "plugin": {
+        "min": "1.0.0"
+    }
+  }
+}
