@@ -77,26 +77,14 @@
 					<div class="zswac-parameter-block" ng-repeat="parameter in form.parameters">
 						<div class="zswac-input-block">
 							<label>Name</label>
-							<input type="text" ng-model="parameter.name" placeholder="Parameter name" />
+							<input type="text" ng-model="parameter.name" ng-change="form.parameterAdded()" placeholder="Parameter name" />
 						</div>
 						<div class="zswac-input-block">
 							<label>Value</label>
-							<input type="text" ng-model="parameter.value" placeholder="Parameter value" />
+							<input type="text" ng-model="parameter.value" ng-change="form.parameterAdded()" placeholder="Parameter value" />
 						</div>
-						<div class="zswac-input-block">
+						<div class="zswac-input-block" ng-if="$index != (form.parameters.length -1)">
 							<button type="button" class="zswac-button-action" ng-click="form.removeParam($index)" title="Remove the parameter"><span class="glyphicons glyphicons-delete"></span></button>
-						</div>
-					</div>
-					
-					<!-- another line for new parameter -->
-					<div class="zswac-parameter-block">
-						<div class="zswac-input-block">
-							<label>Name</label>
-							<input type="text" ng-model="newParameter.name" placeholder="Parameter name" ng-change="form.parameterAdded()" />
-						</div>
-						<div class="zswac-input-block">
-							<label>Value</label>
-							<input type="text" ng-model="newParameter.value" placeholder="Parameter value" ng-change="form.parameterAdded()" />
 						</div>
 					</div>
 				</div>
@@ -110,7 +98,8 @@
 			
 			<div class="zswac-input-row zswac-result-wrapper">
 				<div class="zswac-input-block">
-					<pre ng-if=" result" pretty-json="result">{{result | json}}</pre>
+					<pre ng-if=" result && form.returnedResponseType == 'json'">{{result | prettifyResponse:"json"}}</pre>
+					<pre ng-if=" result && form.returnedResponseType != 'json'">{{result | prettifyResponse:"xml"}}</pre>
 					<pre ng-if="!result">Web APIs result goes here...</pre>
 				</div>
 			</div>

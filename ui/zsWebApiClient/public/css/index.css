@@ -36,10 +36,8 @@ img.zswac-logo {
 
 
 .zswac-available-actions-wrapper {
-	xdisplay: none;
 	position: absolute;
 	z-index: 20;
-	top: 53px;
 	background: #FFF;
 	border: 1px solid #CCC;
 	box-shadow: 5px 5px 5px rgba(0,0,0,0.3);

@@ -22,9 +22,11 @@ class WebApiController extends WebAPIActionController
 		}
 		
 		// pass the data to the view
-		return array(
+		// (WebApiResponseContainer - is a generic class for returning web API responses
+		// The class knows how to render the response properly in XML or JSON)
+		return new \WebAPI\View\WebApiResponseContainer(array(
 			'webapis' => $webApisRutes,
-		);
+		));
 	}
 	
 }
